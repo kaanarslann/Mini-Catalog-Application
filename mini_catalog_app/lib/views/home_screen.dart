@@ -114,6 +114,52 @@ class _HomeScreenState extends State<HomeScreen> {
                   fit: BoxFit.fitWidth,
                 ),
               ),
+
+              const SizedBox(height: 16),
+
+              Expanded(
+                child: GridView.builder(
+                  itemCount: allProducts.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.7,
+                    ),
+                  itemBuilder: (context, index) {
+                    final product = allProducts[index];
+                
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            offset: Offset(0, 6),
+                          )
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(12),
+                            ),
+                            child: Image.network(
+                              product.image ?? "",
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  ),
+              )
             ],
           ),
         ))
