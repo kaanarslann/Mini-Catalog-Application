@@ -10,11 +10,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   ApiService apiService = ApiService();
   List<Data> allProducts = [];
   bool isLoading = false;
-  String errorMessage  ="";
+  String errorMessage = "";
 
   Future<void> loadProducts() async {
     try {
@@ -42,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     loadProducts();
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,24 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   const Text(
                     "Discover",
-                    style: TextStyle(
-                      fontSize: 34,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
                   ),
-              
+
                   const Spacer(),
-              
+
                   IconButton(
                     icon: const Icon(Icons.shopping_bag_outlined),
                     iconSize: 32,
                     onPressed: () {},
-                    )
+                  ),
                 ],
               ),
-          
+
               const SizedBox(height: 8),
-          
+
               const Text(
                 "Premium devices for your likes.",
                 style: TextStyle(
@@ -98,7 +94,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.search, color: Colors.grey),
                     contentPadding: EdgeInsets.symmetric(vertical: 12),
-                    
                   ),
                 ),
               ),
@@ -124,11 +119,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 0.7,
-                    ),
+                    childAspectRatio: 0.65,
+                  ),
                   itemBuilder: (context, index) {
                     final product = allProducts[index];
-                
+
                     return Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -138,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.black26,
                             blurRadius: 10,
                             offset: Offset(0, 6),
-                          )
+                          ),
                         ],
                       ),
                       child: Column(
@@ -153,16 +148,50 @@ class _HomeScreenState extends State<HomeScreen> {
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
-                          )
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  product.name ?? "",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                            
+                                const SizedBox(height: 3),
+                            
+                                Text(
+                                  product.tagline ?? "",
+                                  style: TextStyle(
+                                    color: Colors.grey.shade600,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                            
+                                const SizedBox(height: 3),
+                            
+                                Text(
+                                  product.price ?? "",
+                                  style: TextStyle(
+                                    color: Colors.blue.shade600,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     );
                   },
-                  ),
-              )
+                ),
+              ),
             ],
           ),
-        ))
+        ),
+      ),
     );
   }
 }
