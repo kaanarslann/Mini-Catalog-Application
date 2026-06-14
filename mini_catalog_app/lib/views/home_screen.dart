@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:mini_catalog_app/services/api_service.dart";
+import "package:mini_catalog_app/models/products_model.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,6 +10,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
+  ApiService apiService = ApiService();
+  List<Data> allProducts = [];
+  bool isLoading = false;
+  String errorMessage  ="";
+
+  Future<void> loadProducts() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
+
+      final products = await apiService.fetchProducts();
+      setState(() {
+        allProducts = products.data ?? [];
+      });
+    } catch (error) {
+      setState(() {
+        errorMessage = "Products load has failed. Exception: $error";
+      });
+    } finally {
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    loadProducts();
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
