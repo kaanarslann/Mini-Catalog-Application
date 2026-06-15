@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:mini_catalog_app/components/product_item_tile.dart";
 import "package:mini_catalog_app/services/api_service.dart";
 import "package:mini_catalog_app/models/products_model.dart";
+import "package:mini_catalog_app/views/product_detail_screen.dart";
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -90,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TextField(
                   decoration: const InputDecoration(
-                    hintText: "Search products",
+                    hintText: "Search products...",
                     hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none,
                     prefixIcon: Icon(Icons.search, color: Colors.grey),
@@ -125,7 +126,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemBuilder: (context, index) {
                     final product = allProducts[index];
 
-                    return ProductItemTile(product: product);
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => 
+                            ProductDetailScreen(product: product),
+                            ),
+                          );
+                      },
+                      child: ProductItemTile(product: product),
+                    );
                   },
                 ),
               ),
