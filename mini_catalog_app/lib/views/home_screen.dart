@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:mini_catalog_app/components/product_item_tile.dart";
 import "package:mini_catalog_app/services/api_service.dart";
 import "package:mini_catalog_app/models/products_model.dart";
+import "package:mini_catalog_app/views/cart_screen.dart";
 import "package:mini_catalog_app/views/product_detail_screen.dart";
 
 class HomeScreen extends StatefulWidget {
@@ -67,7 +68,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   IconButton(
                     icon: const Icon(Icons.shopping_bag_outlined),
                     iconSize: 32,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CartScreen(
+                            cartIds: cartIds,
+                            products: allProducts,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
@@ -132,10 +143,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => 
-                            ProductDetailScreen(product: product, cartIds: cartIds,),
+                            builder: (context) => ProductDetailScreen(
+                              product: product,
+                              cartIds: cartIds,
                             ),
-                          );
+                          ),
+                        );
                       },
                       child: ProductItemTile(product: product),
                     );
