@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Data> allProducts = [];
   bool isLoading = false;
   String errorMessage = "";
+  Set<int> cartIds = {};
 
   Future<void> loadProducts() async {
     try {
@@ -132,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => 
-                            ProductDetailScreen(product: product),
+                            ProductDetailScreen(product: product, cartIds: cartIds,),
                             ),
                           );
                       },

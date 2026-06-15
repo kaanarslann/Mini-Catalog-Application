@@ -4,8 +4,9 @@ import 'package:mini_catalog_app/models/products_model.dart';
 class ProductDetailScreen extends StatefulWidget {
   
   final Data product;
+  final Set<int> cartIds;
   
-  const ProductDetailScreen({super.key, required this.product});
+  const ProductDetailScreen({super.key, required this.product, required this.cartIds});
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -70,16 +71,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade400,
+                        color: Colors.blueGrey.shade400,
                       ),
                     ),
         
                     SizedBox(height: 16),
         
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          widget.cartIds.add(widget.product.id ?? 0);
+                        });
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Added to cart."),
+                            backgroundColor: Colors.green.shade500,
+                            behavior: SnackBarBehavior.floating,
+                            )
+                          );
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueGrey,
+                        backgroundColor: Colors.blueGrey.shade600,
                         minimumSize: Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
