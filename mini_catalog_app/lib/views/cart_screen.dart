@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_catalog_app/components/cart_item_tile.dart';
 import 'package:mini_catalog_app/models/products_model.dart';
 
 class CartScreen extends StatefulWidget {
@@ -14,22 +15,60 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final cartProducts = widget.products.where(
-      (product) => widget.cartIds.contains(product.id)).toList();
+    final cartProducts = widget.products
+        .where((product) => widget.cartIds.contains(product.id))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(title: Text("Cart")),
 
-      body: Column(
-        children: [
-          ListView.builder(
-            itemCount: cartProducts.length,
-            itemBuilder: (context, index) {
-              final item = cartProducts[index];
-            }
-            ),
-        ],
-      )
-      );
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: cartProducts.length,
+                  itemBuilder: (context, index) {
+                    final item = cartProducts[index];
+        
+                    return CartItemTile(
+                      item: item,
+                      onRemove: () {
+                        setState(() {
+                          widget.cartIds.remove(item.id);
+                        });
+                      },
+                    );
+                  },
+                ),
+              ),
+        
+              SizedBox(height: 10),
+        
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blueGrey,
+                  minimumSize: Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  )
+                ),
+                child: Text(
+                  "Checkout",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                  ),
+                  )
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
