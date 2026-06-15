@@ -14,6 +14,21 @@ class ProductDetailScreen extends StatefulWidget {
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(title: Text("Back")),
+
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.network(
+            widget.product.image ?? "",
+            height: 350,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          )
+        ],
+      ),
+
+    );
   }
 }
