@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mini_catalog_app/models/products_model.dart';
 
 class CartScreen extends StatefulWidget {
-  
   final Set<int> cartIds;
   final List<Data> products;
-  
+
   const CartScreen({super.key, required this.cartIds, required this.products});
 
   @override
@@ -15,8 +14,22 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final cartProducts = widget.products.where(
+      (product) => widget.cartIds.contains(product.id)).toList();
+
     return Scaffold(
       appBar: AppBar(title: Text("Cart")),
-    );
+
+      body: Column(
+        children: [
+          ListView.builder(
+            itemCount: cartProducts.length,
+            itemBuilder: (context, index) {
+              final item = cartProducts[index];
+            }
+            ),
+        ],
+      )
+      );
   }
 }
