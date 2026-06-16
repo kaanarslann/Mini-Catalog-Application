@@ -23,11 +23,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                widget.product.image ?? "",
-                height: 350,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              Hero(
+                tag: widget.product.id ?? 0,
+                child: Image.network(
+                  widget.product.image ?? "",
+                  height: 350,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
           
               Padding(
