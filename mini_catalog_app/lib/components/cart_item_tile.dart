@@ -18,7 +18,6 @@ class CartItemTile extends StatelessWidget {
             height: 70,
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: Colors.brown.shade100,
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                 image: NetworkImage(item.image ?? ""),

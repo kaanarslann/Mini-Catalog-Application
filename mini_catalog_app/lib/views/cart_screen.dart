@@ -46,7 +46,33 @@ class _CartScreenState extends State<CartScreen> {
               ),
         
               SizedBox(height: 10),
-        
+
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.grey.shade400),
+                ),
+                padding: EdgeInsets.all(12),
+                child: Row(
+                  children: [
+                    Icon(Icons.info_outlined, color: Colors.grey.shade600),
+                    SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In placerat pellentesque magna.",
+                        style: TextStyle(
+                          color: Colors.grey.shade800,
+                          fontSize: 13,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 10),
+
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
