@@ -28,7 +28,29 @@ class _CartScreenState extends State<CartScreen> {
           child: Column(
             children: [
               Expanded(
-                child: ListView.builder(
+                child: cartProducts.isEmpty
+                ? Center(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 64,
+                        color: Colors.grey.shade400,
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        "Your cart is empty.",
+                        style: TextStyle(
+                          color: Colors.grey.shade700,
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
+                )
+                :
+                ListView.builder(
                   itemCount: cartProducts.length,
                   itemBuilder: (context, index) {
                     final item = cartProducts[index];
