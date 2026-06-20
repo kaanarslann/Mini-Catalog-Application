@@ -24,13 +24,13 @@ A Flutter application that demonstrates a mini e-commerce catalog. Users can bro
 ## Screenshots
 
 ### Home Screen
-![Home Screen](./lib/screenshots/homescreen.png)
+![Home Screen](mini_catalog_app/lib/screenshots/homescreen.png)
 
 ### Detail Screen
-![Detail Screen](./lib/screenshots/detailscreen.png)
+![Detail Screen](mini_catalog_app/lib/screenshots/detailscreen.png)
 
 ### Cart Screen
-![Cart Screen](./lib/screenshots/cartscreen.png)
+![Cart Screen](mini_catalog_app/lib/screenshots/cartscreen.png)
 
 
 This project is a starting point for a Flutter application.
